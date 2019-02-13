@@ -9,16 +9,15 @@ const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 
+const Keys = require('./keys.json');
+
 app.use(cors({
   origin: 'http://localhost:'+3000,
   credentials: false
 }));
 
 // this is our MongoDB database
-//const dbRoute = "mongodb+srv://codeMasa:egB6vFKsgz1LFEcC@testcluster-talug.mongodb.net/test?retryWrites=true";
-
-const dbRoute = "mongodb://codeMasa:egB6vFKsgz1LFEcC@testcluster-shard-00-00-talug.mongodb.net:27017,testcluster-shard-00-01-talug.mongodb.net:27017,testcluster-shard-00-02-talug.mongodb.net:27017/test?ssl=true&replicaSet=TestCluster-shard-0&authSource=admin&retryWrites=true"
-
+const dbRoute = "mongodb://codeMasa:" + Keys.dbKey + "@testcluster-shard-00-00-talug.mongodb.net:27017,testcluster-shard-00-01-talug.mongodb.net:27017,testcluster-shard-00-02-talug.mongodb.net:27017/test?ssl=true&replicaSet=TestCluster-shard-0&authSource=admin&retryWrites=true"
 // connects our back end code with the database
 mongoose.connect(
   dbRoute,

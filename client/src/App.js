@@ -85,28 +85,17 @@ class App extends Component {
   updateDB = (idToUpdate, updateToApply) => {
     let objIdToUpdate = null;
     this.state.data.forEach(dat => {
-      console.log(dat.id+ " " + idToUpdate);
-      console.log(typeof dat.id+ " " + typeof idToUpdate);
-      console.log(typeof parseInt(dat.id)+ " " + typeof parseInt(idToUpdate));
-
-
       if (parseInt(dat.id) === parseInt(idToUpdate)) {
-        console.log("here");
         objIdToUpdate = dat._id;
-        console.log(objIdToUpdate)
-
       }
-      console.log(dat._id);
-
     });
-    console.log(objIdToUpdate)
-
     axios.post("http://localhost:3001/api/updateData", {
       id: objIdToUpdate,
-      update: { message: updateToApply }
+      update: {
+        message: updateToApply
+      }
     });
   };
-
 
   // here is our UI
   // it is easy to understand their functions when you
